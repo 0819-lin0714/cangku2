@@ -986,7 +986,7 @@ elif page == "❌ 错题本":
         <p style="font-size:18px; margin-top:10px;">记录你的错题，巩固知识点</p>
     </div>""", unsafe_allow_html=True)
     if not st.session_state.wrong_book:
-        st.markdown('<div class="card-white"><h4>暂无错题</h4><p>答错每日一题后会自动添加到这里</p></div>', unsafe_allow_html=True)
+        st.markdown('<div class="card-white"><h4>暂无错题</h4><p>答错每日一题或代码练习后会自动添加到这里</p></div>', unsafe_allow_html=True)
     else:
         st.markdown('<div class="card-white">', unsafe_allow_html=True)
         for idx, wrong in enumerate(st.session_state.wrong_book):
@@ -996,11 +996,24 @@ elif page == "❌ 错题本":
                         <h5 style="margin:0;">错题 {idx+1}</h5>
                         <span style="color:#9333ea;font-size:12px;">添加时间：{wrong.get('add_time', '未知')}</span>
                     </div>
+            """, unsafe_allow_html=True)
+            # 区分两种错题：每日一题 / 代码填空
+            if "question" in wrong:
+                st.markdown(f"""
                     <p style="margin:4px 0;"><strong>问题：</strong>{wrong['question']}</p>
                     <p style="margin:4px 0;color:#dc2626;"><strong>你的答案：</strong>{wrong['user_answer']}</p>
                     <p style="margin:4px 0;color:#059669;"><strong>正确答案：</strong>{wrong['correct_answer']}</p>
-                </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
+            else:
+                st.markdown(f"""
+                    <p style="margin:4px 0;"><strong>章节：</strong>{wrong['chap']}</p>
+                    <p style="margin:4px 0;"><strong>文件：</strong>{wrong['file']}</p>
+                    <p style="margin:4px 0;"><strong>题目：</strong></p>
+                    <pre style="background:#f8f5ff;padding:10px;border-radius:8px;">{wrong['blank_code']}</pre>
+                    <p style="margin:4px 0;color:#dc2626;"><strong>你的答案：</strong>{wrong['your_ans']}</p>
+                    <p style="margin:4px 0;color:#059669;"><strong>正确答案：</strong>{wrong['correct_ans']}</p>
+                """, unsafe_allow_html=True)
+            st.markdown("</div>", unsafe_allow_html=True)
             col_del = st.columns([1, 10])
             with col_del[0]:
                 if st.button("🗑️ 删除此题", key=f"del_wrong_{idx}"):
@@ -1015,9 +1028,3 @@ elif page == "❌ 错题本":
                 st.success("已清空所有错题！")
                 st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
-
-st.markdown("""
-<div class="footer">
-    <p>©视“见”AI - 人工智能可视化学习平台 | 基于Streamlit构建</p>
-</div>
-""", unsafe_allow_html=True)
