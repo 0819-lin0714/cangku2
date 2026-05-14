@@ -996,7 +996,7 @@ elif page == "❌ 错题本":
                         <h5 style="margin:0;">错题 {idx+1}</h5>
                         <span style="color:#9333ea;font-size:12px;">添加时间：{wrong.get('add_time', '未知')}</span>
                     </div>
-                    <p style="margin:4px 0;"><strong>问题：</strong>{wrong['question']}</p>
+                    <p style="margin:4px 0;"><strong>问题：</strong>{wrong['题目']}</p>
                     <p style="margin:4px 0;color:#dc2626;"><strong>你的答案：</strong>{wrong['user_answer']}</p>
                     <p style="margin:4px 0;color:#059669;"><strong>正确答案：</strong>{wrong['correct_answer']}</p>
                 </div>
