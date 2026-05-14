@@ -12,3 +12,4 @@ streamlit-lottie
 plotly
 requests
 pyperclip
+cozepy
