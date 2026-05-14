@@ -1,0 +1,4 @@
+﻿把该文件夹的数据放到目录的.keras文件夹，位置：C:/用户名/.keras/dataset
+
+例如作者的地址：C:\Users\Lukas\.keras\datasets
+
