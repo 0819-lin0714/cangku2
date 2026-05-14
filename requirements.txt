@@ -6,7 +6,7 @@ scikit-learn
 scipy
 imbalanced-learn
 xgboost
-tensorflow-cpu==2.13.1
+tensorflow
 streamlit
 streamlit-lottie
 plotly
