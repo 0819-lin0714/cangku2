@@ -13,5 +13,3 @@ plotly
 requests
 pyperclip
 cozepy
-os
-math
